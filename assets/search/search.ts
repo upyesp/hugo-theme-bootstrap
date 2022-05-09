@@ -215,6 +215,8 @@ export class Search {
         content,
         id,
         img: result.item.img,
+        smallImg: result.item.smallImg,
+        largeImg: result.item.largeImg,
         permalink: result.item.permalink,
         categories: result.item.categories,
         tags: result.item.tags,
@@ -235,6 +237,9 @@ export class Search {
       this.showLoadMoreBtn();
     }
     this.page += 1;
+    const event = document.createEvent('HTMLEvents');
+    event.initEvent('hbs:viewer:update');
+    document.dispatchEvent(event);
   }
 
   static formatScore(value) {
